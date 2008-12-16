@@ -1,4 +1,0 @@
-@monthly get_requests.py --monthly
-@weekly get_requests.py --weekly
-@daily get_requests.py --daily
-@hourly get_requests.py --hourly
