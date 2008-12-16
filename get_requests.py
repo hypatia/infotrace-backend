@@ -6,11 +6,24 @@ import mechanize
 import os
 import sys
 import popen2
+import re
+
+allowed_types = ['monthly', 'weekly', 'daily', 'hourly']
+
+request_type = os.environ.get("SSH_ORIGINAL_COMMAND")
+
+if request_type in allowed_types:
+    #set BASE_URL appropriately here?
+    print "timed requests"
+elif re.match('instant', request_type):
+    #will need additional parameters for the instant requests, unsure how to proceed
+    print "instant request"
+else:
+    print "OMG HAX"
 
 BASE_URL = "http://infotrace.citizenlab.org/requests.txt"
 br = mechanize.Browser()
 data = br.open(BASE_URL).get_data()
-print data
 
 for line in data.split("\n"):
     if line == "": pass
